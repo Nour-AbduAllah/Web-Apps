@@ -1,0 +1,63 @@
+﻿@model OnlineShop.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3 class="text-danger">Are you sure you want to delete this product?</h3>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-5">
+            <dl class="row">
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.ProductColor)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.ProductColor)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.ProductType)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.ProductType.Type)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.ProductState)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.ProductState.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5">
+            <img src="~/@Model.Image" class="col col-12 border" alt="Product Image"/>
+        </div>
+    </div>
+    
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-outline-success"><i class="fas fa-list"></i>&nbsp; Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,7 @@
+Online shop is an E-Commerce website that selling electronic devices.
+What I have practiced and learned from this Project:
+	-Designed some pages(views) to take and present data from and to the user, using HTML, CSS, Bootstrap, and Razor.
+	-Used user friendly icons and some alerts to make the view more beautiful, using Fontawesome and Allertfy.js libraryies.
+	-Controlled pages access permission levels to protect private pages of admins using role-based authorization.
+
+To restore project database, extract "Database Restore.rar".

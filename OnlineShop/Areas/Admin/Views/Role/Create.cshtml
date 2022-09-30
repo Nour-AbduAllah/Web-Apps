@@ -1,0 +1,29 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+@{ 
+    ViewData["title"] = "Add a Role";
+}
+<h3 class="text-info">Add New Role</h3>
+<div class="col col-12 border">
+    <form asp-area="Admin" asp-controller="Role" asp-action="Create" method="post" class="col-5">
+        <div class="p-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h3>@ViewBag.message</h3>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i></button> | 
+                <a asp-area="Admin" asp-controller="Role" asp-action="Index" class="btn btn-outline-success">
+                    <i class="fa fa-home"></i>
+                </a>
+            </div>
+        </div>
+        
+    </form>
+</div>

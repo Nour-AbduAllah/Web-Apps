@@ -1,0 +1,29 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+@{ 
+    ViewData["title"] = "Delete";
+} 
+
+<h3 class="text-danger">Are you sure that you want to delete this role?</h3>
+<hr />
+<div class="col col-12 border">
+    <form asp-area="Admin" asp-controller="Role" asp-action="Delete" method="post">
+        <div class="p-4 row">
+            <div class="col-5">
+                <dl class="form-group row">
+                    <dt class="col-4">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-8 form-control">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button> | 
+            <a asp-area="Admin" asp-controller="Role" asp-action="Index" class="btn btn-outline-success">
+                <i class="fa fa-home"></i>
+            </a>
+        </div>
+    </form>
+</div>

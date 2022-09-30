@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "EmptyCart";
+}
+<h3 class="text-info">Your Cart Is Empty!</h3>
+<hr />
+<div class="row">
+    <div class="col col-3"></div>
+    <div class="col col-6 container">
+        <img src="~/Images/EmptyCart.png" alt="Empty Cart Image" class="col-12"/>
+    </div>
+    <div class="col col-3"></div>
+</div>
+<div class=" row">
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-3">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-success form-control">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+
+</div>

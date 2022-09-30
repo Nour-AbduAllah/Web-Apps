@@ -1,0 +1,27 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+@{
+    ViewData["title"] = "Role Details";
+}
+
+<h3 class="text-info">Role Details</h3>
+<hr />
+<div class="col col-12 border">
+        <div class="p-4 row">
+            <div class="col-5">
+                <dl class="form-group row">
+                    <dt class="col-4">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-8 form-control">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="form-group">
+            <a asp-area="Admin" asp-controller="Role" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary"><i class="far fa-edit"></i></a> | 
+            <a asp-area="Admin" asp-controller="Role" asp-action="Index" class="btn btn-outline-success">
+                <i class="fa fa-home"></i>
+            </a>
+        </div>
+</div>

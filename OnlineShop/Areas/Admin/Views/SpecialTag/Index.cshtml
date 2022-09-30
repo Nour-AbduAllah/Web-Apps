@@ -1,0 +1,59 @@
+﻿@model IEnumerable<OnlineShop.Models.SpecialTag>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Special Tags</h2>
+    </div>
+    <div class="col col-6 text-right">
+        <a asp-action="Create" class="btn btn-outline-info"><i class="fas fa-plus">&nbsp;</i>Add New</a>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-outline-primary edit"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-outline-success info"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-outline-danger del"><i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+
+    <script type="text/javascript">
+        $(function () {
+            @if (TempData["Create"] != null)
+            {
+                @:alertify.success('@(TempData["Create"])');
+            }
+            else if (TempData["Edit"] != null)
+            {
+                @:alertify.success('@(TempData["Edit"])');
+            }
+            else if (TempData["Delete"] != null)
+            {
+                @:alertify.success('@(TempData["Delete"])');
+            }
+
+        }
+    </script>
+}

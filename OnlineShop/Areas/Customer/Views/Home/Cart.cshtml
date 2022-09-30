@@ -1,0 +1,63 @@
+﻿@model List<OnlineShop.Models.Product>
+@{
+    ViewData["Title"] = "Cart";
+}
+<h3 class="text-info">Your Cart</h3>
+
+<div class="row">
+    <table class=" table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Color</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/@item.Image" alt="Product Image" style="width:15px;height:25px;" />
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@item.Price &dollar;</td>
+                    <td>@item.ProductType.Type</td>
+                    <td>@item.ProductColor</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="Remove" asp-route-id="@item.ID" class="btn btn-outline-danger">
+                            <i class="far fa-trash-alt"></i>
+                        </a> | 
+                        <a asp-controller="Home" asp-action="Details" asp-route-id="@item.ID" class="btn btn-outline-secondary">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class=" row">
+    <div class="col-3">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-success form-control">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-3">
+        <div class="row">
+            <div class="col-12">
+                <b>Total Price: @Model.Sum(p => p.Price)&dollar;</b>
+            </div>
+            <div class="col-12">
+                <a asp-area="Customer" asp-controller="Order" asp-action="Create" class="btn btn-outline-success form-control">Buy</a>
+            </div>
+        </div>
+    </div>
+
+</div>

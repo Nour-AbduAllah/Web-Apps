@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["title"] = "Roles List";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Roles</h2>
+    </div>
+    <div class="col col-6 text-right">
+        <a asp-area="Admin" asp-controller="Role" asp-action="Create" class="btn btn-outline-info"><i class="fas fa-plus">&nbsp;</i>Add New</a>
+    </div>
+</div>
+<hr />
+<div class="col col-12">
+    <table class="table table-hover border text-center">
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <a asp-area="Admin" asp-controller="Role" asp-action="Edit" asp-route-id="@item.Id"
+                           class="btn btn-outline-primary edit">
+                            <i class="fas fa-edit"></i>
+                        </a> |
+                        <a asp-area="Admin" asp-controller="Role" asp-action="Details" asp-route-id="@item.Id"
+                           class="btn btn-outline-success info">
+                            <i class="fas fa-info-circle"></i>
+                        </a> |
+                        <a asp-area="Admin" asp-controller="Role" asp-action="Delete" asp-route-id="@item.Id"
+                           class="btn btn-outline-danger del">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

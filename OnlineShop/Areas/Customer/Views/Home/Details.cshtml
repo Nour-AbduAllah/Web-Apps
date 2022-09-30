@@ -1,0 +1,113 @@
+﻿@model OnlineShop.Models.Product
+@using OnlineShop.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    List<Product> products = HttpContextAccessor.HttpContext.Session.Get<List<Product>>("products");
+    Product product = null;
+    if (products != null)
+    {
+        product = products.FirstOrDefault(p => p.ID == Model.ID);
+    }
+}
+
+@{
+    ViewData["Title"] = Model.Name + " Details";
+}
+
+<h3 class="text-info">@Model.Name Details</h3>
+<hr />
+<div class="row">
+    <div class="col col-5">
+        <dl class="row">
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-7 form-control">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-7 form-control">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.ProductColor)
+            </dt>
+            <dd class="col-sm-7 form-control">
+                @Html.DisplayFor(model => model.ProductColor)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.ProductType)
+            </dt>
+            <dd class="col-sm-7 form-control">
+                @Html.DisplayFor(model => model.ProductType.Type)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.ProductState)
+            </dt>
+            <dd class="col-sm-7 form-control">
+                @Html.DisplayFor(model => model.ProductState.Name)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+            <dd class="col-sm-7 form-control">
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+        </dl>
+    </div>
+    <div class="col col-1"></div>
+    <div class="col col-5">
+        <img src="~/@Model.Image" alt="Product Image" class="col-12 border" />
+    </div>
+</div>
+<hr />
+<form method="post">
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl"/>
+    <div class=" row">
+        <div class="col-3">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-success form-control">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+        <div class="col-3">
+
+        </div>
+        <div class="col-3">
+            @if (product != null)
+            {
+                <button type="submit" asp-controller="Home" asp-action="Remove" asp-route-id="@Model.ID" 
+                       id="RemoveMe" class="btn btn-outline-danger form-control">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            }
+        </div>
+        <div class="col-3">
+            <button type="submit" asp-controller="Home" asp-action="Details" class="btn btn-outline-primary form-control">
+                <i class="fas fa-shopping-basket"></i>
+            </button>
+        </div>
+    </div>
+</form>
+@*@section Scripts{ 
+<script>
+    $ (function () {
+        $("#RemoveMe").on("click", function () {
+            @{
+                List<Product> products = HttpContextAccessor.HttpContext.Session.Get<List<Product>>("products");
+                if (products != null)
+                {
+                    Product product = products.FirstOrDefault(p => p.ID == Model.ID);
+                    if (product != null)
+                    {
+                        products.Remove(product);
+                        HttpContextAccessor.HttpContext.Session.Set<List<Product>>("products", products);
+                    }
+                }
+        })
+    })
+</script>
+}*@

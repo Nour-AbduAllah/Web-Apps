@@ -1,0 +1,45 @@
+﻿@model OnlineShop.Models.ApplicationUser
+@{
+    ViewData["title"] = "Lock Out Confirmation";
+}
+
+<h5>Lock-Out Account</h5>
+<h3 class="text-danger">Are you sure you want to Lock-Out this user account!</h3>
+<hr />
+<div class="col-12 border">
+    <div class="col-5">
+        <dl class="row">
+            <dt class="col-sm-4">
+                <b>Name</b>
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+        </dl>
+    </div>
+</div>
+<br />
+<form asp-area="Admin" asp-controller="User" asp-action="LockOut" method="post">
+    <div class="col-5">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger"><i class="fa fa-user-lock"></i></button>
+        <a asp-area="Admin" asp-controller="User" asp-action="Index"
+           class="btn btn-outline-success">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+</form>

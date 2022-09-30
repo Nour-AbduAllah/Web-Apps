@@ -1,0 +1,93 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@model IPagedList<OnlineShop.Models.Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<br />
+<br />
+<div class="row">
+    @foreach (Product item in Model)
+    {
+        <div class=" col-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="my-0 txt-responsive">
+                        <label class="txt-responsive text-info">@item.Name</label>
+                    </h5>
+                </div>
+                <div class="flex-fill">
+                    <img src="~/@item.Image" alt="Product Image" class="card-img-top" />
+                </div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="price txt-responsive">Price: @item.Price &dollar;</label>
+                        </div>
+                        <div class="col-4">
+                            <a asp-controller="Home" asp-action="Details" asp-route-id="@item.ID"
+                               class="btn btn-outline-info fa-pull-right">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new
+   {
+       page = page
+   })
+        , new X.PagedList.Web.Common.PagedListRenderOptions
+        {
+            DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
+            DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
+            //DisplayPageCountAndCurrentLocation = true,
+            //PageCountAndCurrentLocationFormat = " Page {0} of {1}. ",
+            ContainerDivClasses = new[] { "navigation dot" },
+            LiElementClasses = new[] { "page-item dot" },
+            PageClasses = new[] { "page-link dot" },
+        })
+        @*DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded;
+        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded;
+        DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded;
+        DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded;
+        DisplayLinkToIndividualPages = true;
+        DisplayPageCountAndCurrentLocation = false;
+        MaximumPageNumbersToDisplay = 10;
+        DisplayEllipsesWhenNotShowingAllPageNumbers = true;
+        EllipsesFormat = "&#8230;";
+        LinkToFirstPageFormat = "««";
+        LinkToPreviousPageFormat = "«";
+        LinkToIndividualPageFormat = "{0}";
+        LinkToNextPageFormat = "»";
+        LinkToLastPageFormat = "»»";
+        PageCountAndCurrentLocationFormat = "Page {0} of {1}.";
+        ItemSliceAndTotalFormat = "Showing items {0} through {1} of {2}.";
+        ClassToApplyToFirstListItemInPager = null;
+        ClassToApplyToLastListItemInPager = null;
+        ContainerHtmlTag = "nav";
+        UlElementClasses = new[] { "pagination" };
+        LiElementClasses = Enumerable.Empty<string>
+            ();
+            AhrefElementClasses = Enumerable.Empty<string>
+                ();
+                ActiveElementClasses = new[] { "active" };
+                DisabledElementClasses = new[] { "disabled" };*@
+    </div>
+    <div class="col-3"></div>
+
+
+
+</div>
+@section Scripts{
+    <script>
+        $(function () {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });
+    </script>
+} 

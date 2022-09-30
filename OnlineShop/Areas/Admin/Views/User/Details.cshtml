@@ -1,0 +1,61 @@
+﻿@model OnlineShop.Models.ApplicationUser
+@{ 
+    ViewData["title"] = "User Details";
+}
+
+<h3 class="text-info">User Details</h3>
+<br />
+
+<div class="col col-12 border">
+    <div class="col-5">
+        <dl class="row">
+            <dt class="col-sm-4">
+                <b>Name</b>
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+        </dl>
+    </div>
+</div>
+<br />
+
+<div class="col col-6">
+    <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id"
+       class="btn btn-outline-primary">
+        <i class="fas fa-edit"></i>
+    </a> |
+    @if (Model.LockoutEnd != null && Model.LockoutEnd > DateTime.Now)
+    {
+        <a asp-area="Admin" asp-controller="User" asp-action="Activate" asp-route-id="@Model.Id"
+           class="btn btn-outline-secondary">
+            <i class="fa fa-unlock"></i>
+        </a>
+    }
+    else
+    {
+        <a asp-area="Admin" asp-controller="User" asp-action="LockOut" asp-route-id="@Model.Id"
+           class="btn btn-outline-secondary">
+            <i class="fa fa-user-lock"></i>
+        </a>
+    }
+    |
+    <a asp-area="Admin" asp-controller="User" asp-action="Index"
+       class="btn btn-outline-success">
+        <i class="fas fa-home"></i>
+    </a>
+</div>
