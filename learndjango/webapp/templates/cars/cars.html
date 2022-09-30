@@ -1,0 +1,18 @@
+{% extends 'structures/layout.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'admin/css/imgstyle.css' %">
+{% block body %}
+
+{% for car in cars %}
+    <div>
+        <p>Car name: {{car.name}}</p>
+        <p>Price: ${{car.price}}</p>
+        <p>Describtion: {{car.describtion}}</p>
+        <!-- <div > -->
+        <img src="{{car.img.url}}" class=".img-fluid" alt="car image">
+        <!-- </div> -->
+        <hr>
+    </div>
+{% endfor %}
+
+{% endblock %}

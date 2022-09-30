@@ -1,0 +1,93 @@
+-----Project creation-----
+	-Create new environment in your selected path (This helps to avoid the confusion while calling libraries):
+		*run this command: python -m venv 'environment name'
+		*If you still in the root path we created this environment from, then run this commant: 'environment name'\Scripts\activate,
+		else you should access the Scripts folder in your environment and run this command: activate.
+
+		*(Internet connection needed here) Now install all packages you need. Basicly we need to install django, Pillow.
+			run this commands: 
+					_ pip install django
+					_ pip install pillow
+
+		*From the root path we created this environment from, we need to access the environment file.
+			run this command: cd 'environment name'
+			or open the environment directory from your File Explorer and in the path text box in top write cmd and HIT ENTER,
+			it will open command prompot in the environment path.
+		*Now create our django project from cmd : django-admin startproject 'project name'
+		*Now ACCESS project directory then create an application from cmd:
+			_ cd 'project name'
+			_ django-admin startapp 'application name'
+		*If you are working with visual studio code open your project in it from File-Open Folder
+			or from cmd with project path run this command : code .
+		*In vscode terminal run this: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+			Kill(delete) terminals and open it again from Terminal - New Terminal from titlebar.
+
+		*Create 'templates' directory in the project directory.
+		*Setup project's setting file.
+			_ add created apllication in INSTALLED_APPS: 'app_name.apps.App_nameConfig'
+			_ set static and media urls
+				STATIC_URL = "static/"
+				STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+				STATICFILES_DIRS = [
+    					os.path.join(BASE_DIR, 'app_name/static'),
+				]
+
+				MEDIA_URL = '/media/'
+				MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+			_ set templates path in TEMPLATES: 
+				TEMPLATES = [
+    						{
+        						"BACKEND": "django.template.backends.django.DjangoTemplates",
+        						"DIRS": [
+            							os.path.join(BASE_DIR, 'templates'),
+        							],
+        						"APP_DIRS": True,
+        						"OPTIONS": {
+            						"context_processors": [
+                					"django.template.context_processors.debug",
+                					"django.template.context_processors.request",
+                					"django.contrib.auth.context_processors.auth",
+                					"django.contrib.messages.context_processors.messages",
+            							],
+        							},
+    						},
+					]
+		*Create static directory in your app and add 3 dirs in it css, js, and image
+		*Pull static changes to the root (repeat it every time you chane on your app's static content) by run the following:
+			_ python manage.py collectstatic
+		*Set up routing system in project's urls file:
+			add urls file path of the app in project's url file => 
+				urlpatterns = [
+    					path("admin/", admin.site.urls),
+
+    					# empty string to make it home page => projectname.domain
+    					path('', include('app_name.urls')),
+
+   					# app2 routing - don't forget to but / after app name because it causes an error.
+    					path('app2_name/', include('app2_name.urls')),
+					] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+		
+		*DON'T FORGET to setup your app urls, views, and tamplates
+
+
+		*Run your server:
+			_ python manage.py runserver
+
+		*Close your server
+			_ ctrl+c
+
+		*Apply database migration:
+			_ python manage.py migrate
+
+		*Run your server:
+			_ python manage.py runserver
+---------------------------------------------------------
+
+-----Create admin account-----
+	* python manage.py createsuperuser
+	*In application.admin register current models AFTER apply migrations
+		_ python manage.py makemigrations
+		_ python manage.py migrate
+		from django.contrib import admin
+		from . import 'model name'
+		admin.site.register('model name')

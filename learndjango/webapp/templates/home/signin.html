@@ -1,0 +1,11 @@
+{% extends 'structures/layout.html' %}
+
+{% block body %}
+    <form mathod="POST">
+        {% csrf_token %}
+        {{signinform}}
+
+        <input type="submit" value="login">
+    </form>
+    
+{% endblock %}
